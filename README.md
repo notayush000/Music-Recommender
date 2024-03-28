@@ -43,6 +43,12 @@ We built our own music recommendation system using a song dataset. It integrates
 
 
 ## Screenshots
+![image](https://github.com/notayush000/Web-Music-Recommender/assets/58353326/8f7f42c3-b4f3-42e4-af87-b46125a2f873)
+![image](https://github.com/notayush000/Web-Music-Recommender/assets/58353326/0728c82e-35a2-479d-bb17-fb54de7ec0af)
+![image](https://github.com/notayush000/Web-Music-Recommender/assets/58353326/89641a01-e706-42b7-a1f4-02b50196294d)
+![image](https://github.com/notayush000/Web-Music-Recommender/assets/58353326/1d9639d9-1b0c-423d-b551-3ea93853756a)
+![image](https://github.com/notayush000/Web-Music-Recommender/assets/58353326/9091f254-4027-4eee-a03d-e991584dc0a4)
+
 
 
 ## Support
