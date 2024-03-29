@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings("ignore")
 
-api = Blueprint("api", __name__)
 
 import pandas as pd
 from nltk.stem.porter import PorterStemmer
@@ -15,6 +14,7 @@ from nltk import word_tokenize
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+api = Blueprint("api", __name__)
 
 class MusicRecommend:
     def _init_(self):
@@ -174,7 +174,7 @@ class Spotify:
         return response['progress_ms']
         
 
-
+recommender = MusicRecommend()
     
 
 @api.route("/search/<name>")
@@ -215,3 +215,14 @@ def pause_music():
     from musicf.routes import spotify
     spotify.pause_song()
     return jsonify(spotify.get_current_playing_track())
+
+
+@api.route("/get_recommendations/<name>")
+def recommend(name):
+    recommendations = recommender.recommend(name)
+    from musicf.routes import spotify
+    results = []
+    for song in recommendations:
+        details = spotify.search_song(f"{song['song_name']} {song['artist']}")
+        results.append(details[0])
+    return jsonify({"results": results})
