@@ -8,7 +8,44 @@ import warnings
 warnings.filterwarnings("ignore")
 
 api = Blueprint("api", __name__)
+
+import pandas as pd
+from nltk.stem.porter import PorterStemmer
+from nltk import word_tokenize
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+class MusicRecommend:
+    def _init_(self):
+        self.data = pd.read_csv("popular_artist.csv")
+        self.df = self.data.iloc[:19000,:]
+        
+        self.df["text"] = self.df["text"].str.lower().replace(r"^\w\s"," ").replace(r'\n',' ',regex=True)
+        self.df['text'] = self.df['text'].apply(lambda x: self.stem_text(x))
+        
+        self.tf_idf = TfidfVectorizer(analyzer="word", stop_words="english")
+        self.vector_matrix = self.tf_idf.fit_transform(self.df['text'])
+        self.similarity_matrix = cosine_similarity(self.vector_matrix)
+        
+        ########################################################################
     
+    def stem_text(self, txt):
+        token_list = word_tokenize(txt)
+        vec = [PorterStemmer().stem(token) for token in token_list]
+        return " ".join(vec)
+    
+    def recommend(self, user_song):
+        recommended_songs = []
+        song_index = self.df[self.df['song'] == user_song].index[0]
+        sorted_similar_values = sorted(list(enumerate(self.similarity_matrix[song_index])), reverse=True, key= lambda x: x[1])
+        for song_id in sorted_similar_values[1:6]:
+            song_index = song_id[0]
+            song = self.df.iloc[song_index,:]['song']
+            artist = self.df.iloc[song_index,:]['artist']
+            song_details = {"song_name": song, "artist": artist}
+            recommended_songs.append(song_details)
+        return recommended_songs
 
 class Spotify:
     def __init__(self):
