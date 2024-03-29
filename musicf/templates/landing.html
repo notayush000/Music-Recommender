@@ -1,0 +1,14 @@
+{% extends "auth_base.html" %}
+{% block styleHere %}
+	<style>
+		body{
+			background: linear-gradient(#000108, #000439);;
+		}
+	</style>
+{% endblock styleHere %}
+{% block content %}
+	<div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
+			<a href="/login" role="button" class="btn btn-primary btn-lg my-3" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 50px; --bs-btn-font-size: 25px;">LOGIN</a>
+			<a href="/register" role="button" class="btn btn-primary btn-lg" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 40px; --bs-btn-font-size: 22px;">REGISTER</a>
+	</div>
+{% endblock content  %}

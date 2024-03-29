@@ -1,0 +1,65 @@
+{% extends "home_base.html" %}
+{% block styleHere %}
+    <style>
+        input[type="submit"]{
+            width: 20%;
+            height: 35px;
+            border: 1px solid;
+            background: #2691d9;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #e9f4fb;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+{% endblock styleHere %}
+
+{% block nav_content%}
+    <a style="color: white;" class="navbar-brand ms-3" href="/home">
+        <i style="color: white;" class="bi bi-arrow-left mx-2"></i>
+        Home
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto fs-5">
+            <li class="nav-item">
+                <a style="color: white;" href="/logout" class="nav-link mx-2">Logout</a>
+            </li>
+        </ul>
+    </div>
+{% endblock nav_content %}
+
+{% block content %}
+    <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex flex-column border border-black" style="width: 45%; height: 450px;">
+            <div class="d-flex">
+                <img src="{{ img }}" alt="logo" class="rounded-circle ms-4 my-2" width="75" height="75">
+                <div style="color: white;" class="ms-3 mt-3">
+                    <b >{{ current_user.username }}</b> <br>
+                    {{ current_user.email }}
+                </div>
+                <div style="color: white;" class="ms-auto me-3 mt-3">
+                    Account creation date: <br>{{ date_time.strftime("%d %b, %Y") }}
+                </div>
+            </div>
+            <div class="d-block mx-3 my-1">
+                <h4 style="color: white;">Account Info</h4>
+                <hr>
+            </div>
+            <form method="post" class="d-block mx-3" enctype="multipart/form-data">
+                <label style="color: white;" for="username" class="mb-1 ms-1">Username</label>
+                <input type="text" placeholder="{{ current_user.username }}" class="form-control" id="username" name="username">
+                <label style="color: white;" for="email" class="my-2 ms-1">Email</label>
+                <input type="email" placeholder="{{ current_user.email }}" class="form-control" id="email" name="email">
+                <label style="color: white;" for="profile" class="my-2 ms-1">Choose profile pic</label>
+                <input type="file" class="form-control" id="profile" accept=".jpg, .png" name="profile">
+                <br>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+{% endblock content %}

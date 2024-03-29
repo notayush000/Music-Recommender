@@ -1,0 +1,44 @@
+{% extends "home_base.html" %}
+{% block styleHere %}
+    <style>
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+{% endblock styleHere %}
+
+{% block nav_content%}
+    <a style="color: white;" class="navbar-brand ms-3" href="/home">
+        <i style="color: white;" class="bi bi-arrow-left mx-2"></i>
+        Home
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto fs-5">
+            <li class="nav-item">
+                <a style="color: white;" href="/logout" class="nav-link mx-2">Logout</a>
+            </li>
+        </ul>
+    </div>
+{% endblock nav_content %}
+
+{% block content %}
+    <div class="container mt-1">
+        <div class="d-flex justify-content-center border border-3 border-light rounded ms-3" style="height: 200px;">
+            <div class="d-flex flex-column fs-3">
+                <a class="my-3" href="/profile">
+                    <i class="bi bi-person"></i>
+                    Profile
+                </a>
+                <hr>
+                <a class="my-3" href="/security">
+                    <i class="bi bi-lock"></i>
+                    Security
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

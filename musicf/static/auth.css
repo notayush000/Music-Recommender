@@ -1,0 +1,95 @@
+body{
+    background: linear-gradient(#000108, #000439);
+    height: 100vh;
+}
+
+.main-container{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 70%;
+    background: #000439;
+    border-radius: 10px;
+}
+
+.main-container h1{
+    text-align: center;
+    padding: 75px 0 20px 0;
+}
+
+.main-container form{
+    padding: 0 15%;
+    box-sizing: border-box;
+}
+
+form .entry-area{
+    position: relative;
+    border-bottom: 2px solid grey;
+    margin: 10% 0;
+}
+
+.entry-area input{
+    width: 100%;
+    height: 25px;
+    padding: 0 5px;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: medium;
+}
+
+.entry-area label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: .2s;
+    font-size: 15px;
+}
+
+.entry-area span::before{
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .2s;
+}
+
+.entry-area input:focus ~ label,
+.entry-area input:valid ~ label{
+    top: -8px;
+    color: #2691d9;
+}
+
+.entry-area input:focus ~ span::before,
+.entry-area input:valid ~ span::before{
+    width: 100%;
+}
+
+input{
+    color: azure;
+}
+
+input[type="submit"]{
+    width: 100%;
+    height: 40px;
+    border: 1px solid darkblue;
+    background: darkblue;
+    border-radius: 20px;
+    font-size: 17px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    border-color: darkblue;
+    transition: .3s;
+}

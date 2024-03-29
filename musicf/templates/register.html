@@ -1,0 +1,50 @@
+{% extends "auth_base.html" %}
+{% block styleHere %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='auth.css')}}">
+	<style>
+		.login-section{
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .login-section a{
+            color: #2691d9;
+            text-decoration: none;
+        }
+
+        .login-section a:hover{
+            text-decoration: underline;
+        }
+	</style>
+{% endblock styleHere %}
+{% block content %}
+    <div class="main-container">
+		<h1 style="color: white;">Register</h1>
+		<form method="post">
+			<div class="entry-area">
+				<input type="text" id="userUsername" name="userUsername" required>
+                <span></span>
+                <label style="color: white;" for="userUsername">Username</label>
+			</div>
+			<div class="entry-area">
+				<input type="text" id="userEmail" name="userEmail" required>
+                <span></span>
+                <label style="color: white;" for="userEmail">Email</label>
+			</div>
+			<div class="entry-area">
+				<input type="password" id="userPassword" name="userPassword" required>
+                <span></span>
+                <label style="color: white;" for="userPassword">Enter Password</label>
+			</div>
+			<div class="entry-area">
+				<input type="password" id="userRepeatPassword" name="userRepeatPassword" required>
+                <span></span>
+                <label style="color: white;" for="userRepeatPassword">Confirm Password</label>
+			</div>
+			<input type="submit" value="Register">
+			<div style="color: gray;" class="login-section">
+                Already have an account? <a style="color: white;" href="/login">Login</a>
+            </div>
+		</form>
+	</div>
+{% endblock content  %}

@@ -1,0 +1,71 @@
+{% extends "home_base.html" %}
+
+{% block styleHere %}
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='play.css') }}">
+{% endblock %}
+
+{% block nav_content %}
+    <a style="color: white;" class="navbar-brand ms-3" href="#">
+        MusicForLife
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto fs-5">
+            <li class="nav-item">
+                <a style="color: white;" href="/profile" class="nav-link mx-2">{{ current_user.username }}</a>
+            </li>
+        </ul>
+    </div>
+{% endblock nav_content %}
+
+{% block content %}
+    <div class="main-stream">
+        <div class="player">
+            <div class="img-area">
+                <img src="{{ data['img'] }}" alt="">
+            </div>
+            <div class="show-area">
+                <div class="song-details">
+                    <p class="song-name">{{ data['name'] }}</p>
+                    <p class="artists-name">{{ data['artists'] }}</p>
+                </div>
+                <div class="progress-area">
+                    <div class="progress-bar"></div>
+                    <div class="timer">
+                        <span class="current">0:00</span>
+                        <span class="duration">{{ data['duration'] }}</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <i class="material-symbols-outlined">repeat</i>
+                    <i id="prev" class="material-symbols-outlined">skip_previous</i>
+                    <div id="play-pause" class="play-pause">
+                        <i class="material-symbols-outlined">play_arrow</i>
+                    </div>
+                    <i id="next" class="material-symbols-outlined">skip_next</i>
+                    <i id="more-music" class="material-symbols-outlined">queue_music</i>
+                </div>
+                <div class="music-list">
+                    <div class="header">
+                        <div class="row">
+                            <i class="material-symbols-outlined">queue_music</i>
+                            <span>Queue</span>
+                        </div>
+                        <i id="close" class="material-symbols-outlined">close</i>
+                    </div>
+                    <ul id="music-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="/home" class="btn btn-primary">Home</a>
+            <button id="rccBtn" type="button" class="btn btn-primary" onclick="showRecommendations()">Show Recommendations</button>
+        </div>
+        <div class="recommendations mt-3">
+            <ul></ul>
+        </div>
+    </div>
+{% endblock content %}

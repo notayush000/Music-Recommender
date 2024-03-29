@@ -1,0 +1,60 @@
+{% extends "auth_base.html" %}
+{% block styleHere %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='auth.css')}}">
+	<style>
+        .extras{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .extras a{
+            color: #000439;
+            text-decoration: none;
+        }
+
+        .register-section{
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .register-section a{
+            color: #000439;
+            text-decoration: none;
+        }
+
+        .register-section a:hover{
+            text-decoration: underline;
+        }
+	</style>
+{% endblock styleHere %}
+{% block content %}
+    <div class="main-container">
+        <h1 style="color: white;">Login</h1>
+        <form method="post">
+            <div class="entry-area">
+                <input type="text" id="userEmailUsername" name="userEmailUsername" required>
+                <span></span>
+                <label style="color: white;" for="userEmailUsername">Username</label>
+            </div>
+            <div class="entry-area">
+                <input type="password" id="userPassword" name="userPassword" required>
+                <span></span>
+                <label style="color: white;" for="userPassword">Password</label>
+            </div>
+            <div class="extras">
+                <div>
+                    <input type="checkbox" id="userRemember" name="userRemember">
+                    <label style="color: white;" for="userRemember">Remember Me</label>
+                </div>
+                <div>
+                    <a style="color: white;" href="#">Forget Password?</a>
+                </div>
+            </div>
+            <input type="submit" value="Login">
+            <div style="color: gray;" class="register-section">
+                Don't have an account? <a style="color: white;" href="/register">Register</a>
+            </div>
+        </form>
+    </div>
+{% endblock content  %}

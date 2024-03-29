@@ -1,0 +1,245 @@
+{% extends "home_base.html" %}
+
+{% block styleHere %}
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        button[type="button"]{
+            width: 100%;
+            height: 40px;
+            border: 1px darkblue;
+            background: darkblue;
+            border-radius: 10px;
+            font-size: 17px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+        }
+
+        input[type="text"]{
+            background: #545670;
+            border: 1px #545670;
+            width: 100%;
+            height: 45px;
+            border-radius: 10px;
+        }
+
+        input[type="text"]::placeholder{
+            color: azure;
+            padding-left: 15px;
+        }
+        
+        input[type="text"]::after{
+            background: #545670;
+        }
+
+        input[type='text']:focus{
+            color: azure;
+            padding-left: 15px;
+        }
+
+        input{
+            color: azure;
+            padding-left: 15px;
+        }
+
+        .main-frame{
+            padding-left: 80px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        
+        .top-result{
+            border-radius: 10px;
+            height: 250px;
+            width: 450px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            font-size: 25px;
+        }
+        
+        .top-result-head{
+            color: azure;
+            padding-left: 5px;
+            padding-top: 2px;
+        }
+        
+        .songs{
+            height: 250px;
+            width: 600px;
+            padding-left: 10px;
+            padding-top: 5px;
+            font-size: 25px;
+        }
+        
+        .song-area{
+            border-radius: 10px;
+            margin-top: 10px;
+            height: 190px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            transition: 0.3s ease-in-out;
+        }
+        
+        .song-area:hover{
+            background: #000439;
+        }
+        
+        .song-area a{
+            text-decoration: none;
+            color: azure;
+            position: absolute;
+            padding-top: 100px;
+            padding-left: 300px;
+        }
+        
+        .song-area a span{
+            font-size: 60px;
+        }
+        
+        .top-song-details{
+            color: azure;
+            position: relative;
+            padding-top: 25px;
+            padding-right: 115px;
+        }
+        
+        .top-song-details p{
+            padding-top: 3px;
+            font-size: 17px;
+        }
+        
+        .songs{
+            color: azure;
+        }
+        
+        .song-img{
+            padding-top: 25px;
+        }
+        
+        .song-img img{
+            margin-left: 13px;
+            border-radius: 10px;
+        }
+        
+        .songs-head{
+            padding-left: 30px;
+            padding-bottom: 5px;
+        }
+        
+        .search-details{
+            display: flex;
+        }
+        
+        .result-details{
+            padding-left: 7px;
+        }
+        
+        .result-details h5{
+            font-size: 14px;
+        }
+        
+        .result-details p{
+            font-size: 11px;
+        }
+        
+        .search-time{
+            padding-right: 10px;
+            padding-top: 10px;
+            font-size: 13px;
+        }
+        
+        li{
+            list-style: none;
+        }
+        
+        .songs ul li a{
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            color: azure;
+            transition: 0.3s ease-in-out;
+        }
+        
+        .songs ul li a:hover{
+            background: #000439;
+            border-radius: 5px;
+        }
+
+    </style>
+
+{% endblock styleHere %}
+
+{% block nav_content %}
+    <a style="color: white;" class="navbar-brand ms-3" href="#">
+        MusicForLife
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto fs-5">
+            <li class="nav-item">
+                <a style="color: white;" href="/profile" class="nav-link mx-2">{{ current_user.username }}</a>
+            </li>
+        </ul>
+    </div>
+{% endblock nav_content  %}
+
+{% block content %}
+    <div class="d-flex justify-content-around">
+        <div class="d-flex flex-column justify-content-center align-items-center" style="width: 75%; height: 400px; margin-top: 75px;">
+            <div class="mt-5" style="width: 45%; text-align: center; margin-top: 150px;">
+                <h2 style="color: white;">Let's get grooving</h2>
+                <hr style="color: white;">
+            </div>
+
+            <div id="search-area" style="display: block; width: 500px;">
+                <div>
+                        <input type="text" placeholder="What do you want to listen to?" id="search_name" name="search_name">
+                        <br>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <button id="search_song" type="button" class="mt-3">
+                                Search
+                            </button>
+                        </div>
+                </div>
+            </div>
+
+            <div id="cgp" style="display: none;">
+                <div class="main-frame">
+                    <div class="top-result">
+                        <div class="top-result-head">
+                            Top result
+                        </div>
+                        <div class="song-area">
+                            <div class="song-img">
+                                <img src="#" alt="" height="140px" width="120px">
+                            </div>
+                            <div class="top-song-details">
+                                <h4></h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="songs">
+                        <div class="songs-head">
+                            Songs
+                        </div>
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center mt-2">
+                    <button id="btn-back" type="button" class="btn btn-primary mt-1 rounded-1">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
