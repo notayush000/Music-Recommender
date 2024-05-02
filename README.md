@@ -1,5 +1,5 @@
 
-# Music Recommender
+# Music Recommender Web app using Spotify API
 
 A Web based music recommender written in python.
 
